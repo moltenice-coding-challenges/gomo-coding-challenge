@@ -34,6 +34,6 @@ public class UvtApplication implements CommandLineRunner {
                 .map(tuple -> tuple.split("-"))
                 .map(split -> new Fragment(Long.valueOf(split[0]), Long.valueOf(split[1])))
                 .collect(Collectors.toSet());
-        calculator.calculateUvt(fragments);
+        System.out.println(calculator.calculateUvt(fragments));
     }
 }
