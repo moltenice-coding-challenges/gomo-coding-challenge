@@ -26,7 +26,7 @@ public class Fragment {
         return endInMillis;
     }
 
-    public boolean isSubsetOf(Collection<Fragment> fragments) {
+    public boolean isSubsetOfAnElementIn(Collection<Fragment> fragments) {
         return fragments.stream().anyMatch(fragment ->
                 fragment.getStartInMillis() < this.getStartInMillis() && fragment.getEndInMillis() > this.getEndInMillis());
     }

@@ -2,7 +2,10 @@ package com.intilled.uvt.model;
 
 import org.junit.Test;
 
-import static org.junit.Assert.fail;
+import java.util.Arrays;
+import java.util.Collections;
+
+import static org.junit.Assert.*;
 
 public class FragmentTest {
 
@@ -21,5 +24,16 @@ public class FragmentTest {
             e.printStackTrace();
             fail("Unexpected Exception: " + e.getClass().getSimpleName());
         }
+    }
+
+    @Test
+    public void test_isSubsetOf() {
+        Fragment fragment1 = new Fragment(0L, 1000L);
+        Fragment fragment2 = new Fragment(100L, 200L);
+        Fragment fragment3 = new Fragment(150L, 160L);
+        assertTrue(fragment2.isSubsetOfAnElementIn(Arrays.asList(fragment1, fragment2, fragment3)));
+        assertFalse(fragment2.isSubsetOfAnElementIn(Arrays.asList(fragment2, fragment3)));
+        assertTrue(fragment3.isSubsetOfAnElementIn(Arrays.asList(fragment2, fragment3)));
+        assertFalse(fragment1.isSubsetOfAnElementIn(Collections.singleton(fragment1)));
     }
 }

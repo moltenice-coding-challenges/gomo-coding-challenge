@@ -80,4 +80,12 @@ public class UvtCalculatorTest {
         long result = calculator.calculateUvt(Sets.newHashSet(fragment1, fragment2));
         assertEquals(0L, result);
     }
+
+    @Test
+    public void test_calculateUvtWithCustomExample5() {
+        Fragment fragment1 = new Fragment(9000L, 9000L);
+        Fragment fragment2 = new Fragment(9000L, 9000L);
+        long result = calculator.calculateUvt(Sets.newHashSet(fragment1, fragment2));
+        assertEquals(0L, result);
+    }
 }

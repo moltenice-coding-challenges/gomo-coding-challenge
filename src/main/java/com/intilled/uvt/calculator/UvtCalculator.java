@@ -18,7 +18,7 @@ public class UvtCalculator {
             List<Fragment> sortedFragments = fragments.stream()
                     .sorted(Comparator.comparing(Fragment::getStartInMillis))
                     .collect(Collectors.toList());
-            sortedFragments.removeIf(fragment -> fragment.isSubsetOf(fragments));
+            sortedFragments.removeIf(fragment -> fragment.isSubsetOfAnElementIn(fragments));
 
             ListIterator<Fragment> iterator = sortedFragments.listIterator();
             while (iterator.hasNext()) {
