@@ -29,11 +29,18 @@ public class UvtApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        LOGGER.info("Received arguments {}", Arrays.toString(args));
-        Set<Fragment> fragments = Arrays.stream(args)
-                .map(tuple -> tuple.split("-"))
-                .map(split -> new Fragment(Long.valueOf(split[0]), Long.valueOf(split[1])))
-                .collect(Collectors.toSet());
-        System.out.println(calculator.calculateUvt(fragments));
+        long uvtResult = -1;
+        try {
+            LOGGER.info("Received arguments {}", Arrays.toString(args));
+            Set<Fragment> fragments = Arrays.stream(args)
+                    .map(tuple -> tuple.split("-"))
+                    .map(split -> new Fragment(Long.valueOf(split[0]), Long.valueOf(split[1])))
+                    .collect(Collectors.toSet());
+            uvtResult = calculator.calculateUvt(fragments);
+        } catch (Exception e) {
+            LOGGER.error("Unable to calculate Uvt", e);
+        }
+        LOGGER.info("Printing result {} to STDOUT", uvtResult);
+        System.out.println(uvtResult);
     }
 }

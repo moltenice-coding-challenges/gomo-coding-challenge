@@ -47,6 +47,13 @@ public class UvtCalculatorTest {
     }
 
     @Test
+    public void test_calculateUvtWithExampleInPdf4() {
+        Fragment fragment1 = new Fragment(0L, 10L);
+        long result = calculator.calculateUvt(Collections.singleton(fragment1));
+        assertEquals(10L, result);
+    }
+
+    @Test
     public void test_calculateUvtWithCustomExample1() {
         Fragment fragment1 = new Fragment(0L, 1000L);
         Fragment fragment2 = new Fragment(100L, 200L);
