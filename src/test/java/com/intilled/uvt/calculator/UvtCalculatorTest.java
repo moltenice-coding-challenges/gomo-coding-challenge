@@ -3,14 +3,12 @@ package com.intilled.uvt.calculator;
 import com.google.common.collect.Sets;
 import com.intilled.uvt.model.Fragment;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.Collections;
 
 import static org.junit.Assert.assertEquals;
 
-@Ignore("TDD so will currently fail")
 public class UvtCalculatorTest {
 
     private UvtCalculator calculator;
@@ -73,5 +71,13 @@ public class UvtCalculatorTest {
         Fragment fragment3 = new Fragment(11000L, 12000L);
         long result = calculator.calculateUvt(Sets.newHashSet(fragment1, fragment2, fragment3));
         assertEquals(3000L, result);
+    }
+
+    @Test
+    public void test_calculateUvtWithCustomExample4() {
+        Fragment fragment1 = new Fragment(0L, 0L);
+        Fragment fragment2 = new Fragment(9000L, 9000L);
+        long result = calculator.calculateUvt(Sets.newHashSet(fragment1, fragment2));
+        assertEquals(0L, result);
     }
 }

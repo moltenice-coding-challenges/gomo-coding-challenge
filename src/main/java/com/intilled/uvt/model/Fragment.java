@@ -1,5 +1,6 @@
 package com.intilled.uvt.model;
 
+import java.util.Collection;
 import java.util.Objects;
 
 /**
@@ -10,6 +11,9 @@ public class Fragment {
     private final long endInMillis;
 
     public Fragment(long startInMillis, long endInMillis) {
+        if (endInMillis < startInMillis) {
+            throw new IllegalArgumentException(String.format("End %d is before start %d", endInMillis, startInMillis));
+        }
         this.startInMillis = startInMillis;
         this.endInMillis = endInMillis;
     }
@@ -20,6 +24,11 @@ public class Fragment {
 
     public long getEndInMillis() {
         return endInMillis;
+    }
+
+    public boolean isSubsetOf(Collection<Fragment> fragments) {
+        return fragments.stream().anyMatch(fragment ->
+                fragment.getStartInMillis() < this.getStartInMillis() && fragment.getEndInMillis() > this.getEndInMillis());
     }
 
     @Override
