@@ -33,7 +33,13 @@ public class UvtApplication implements CommandLineRunner {
         try {
             LOGGER.info("Received arguments {}", Arrays.toString(args));
             Set<Fragment> fragments = Arrays.stream(args)
-                    .map(tuple -> tuple.split("-"))
+                    .map(tuple -> {
+                        String[] split = tuple.split("-");
+                        if (split.length != 2) {
+                            throw new IllegalArgumentException("Unable to decipher: " + Arrays.toString(split));
+                        }
+                        return split;
+                    })
                     .map(split -> new Fragment(Long.valueOf(split[0]), Long.valueOf(split[1])))
                     .collect(Collectors.toSet());
             uvtResult = calculator.calculateUvt(fragments);
