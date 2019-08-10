@@ -1,4 +1,4 @@
-# gomo-code-challenge
+# gomo-coding-challenge
 
 ## Prerequisites
 - Java 8+ (I have tested using 12.0.1)
